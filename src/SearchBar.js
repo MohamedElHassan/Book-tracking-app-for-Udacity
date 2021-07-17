@@ -46,9 +46,10 @@ class SearchBar extends Component {
                           style={{
                             width: 128,
                             height: 192,
-                            backgroundImage: `url(${
-                              Book.imageLinks.smallThumbnail
-                            })`
+                            backgroundImage:
+                              Book.imageLinks && Book.imageLinks.smallThumbnail
+                                ? `url(${Book.imageLinks.smallThumbnail})`
+                                : "no Image"
                           }}
                         />
                         <div className="book-shelf-changer">

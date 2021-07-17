@@ -21,13 +21,11 @@ class BookShelves extends Component {
   //I promise I'm improving myself and I will be better and better.
   //I will not give up at all.In the next project will be way improved than this
   //Thank you so much Udacity reviewer, and thanks to Udacity, it helped me alot:D .
- async componentDidMount() {
-
-  const books = await BooksAPI.getAll();
-      this.setState(() => ({
-        AllBooks : books
-      }));
-    
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    this.setState(() => ({
+      AllBooks: books
+    }));
   }
   handleSearch = query => {
     this.setState(() => ({ SearchValue: query }));
@@ -49,7 +47,8 @@ class BookShelves extends Component {
   };
   ChangeShelf = (shelf, Book) => {
     const updateIndex = this.state.AllBooks.findIndex(b => b.id === Book.id);
-    const updatedBookList = this.state.AllBooks;
+    const Books = this.state.AllBooks.map(b => b);
+    const updatedBookList = Books;
 
     if (updateIndex === -1) {
       Book.shelf = shelf;
