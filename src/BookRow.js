@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 class BookRow extends Component {
   render() {
     const { Book, onChangeShelf, title } = this.props;
-// Please if there is any notes or any improvement, please tell me.
-  //I really appreciate your reviewing to my app , I hope you like it.
-  //I promise I'm improving myself and I will be better and better.
-  //I will not give up at all.In the next project will be way improved than this
-  //Thank you so much Udacity reviewer, and thanks to Udacity, it helped me alot:D .
+    // Please if there is any notes or any improvement, please tell me.
+    //I really appreciate your reviewing to my app , I hope you like it.
+    //I promise I'm improving myself and I will be better and better.
+    //I will not give up at all.In the next project will be way improved than this
+    //Thank you so much Udacity reviewer, and thanks to Udacity, it helped me alot:D .
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{title}</h2>
@@ -25,9 +25,10 @@ class BookRow extends Component {
                       style={{
                         width: 128,
                         height: 192,
-                        backgroundImage: `url(${
-                          Book.imageLinks.smallThumbnail
-                        })`
+                        backgroundImage:
+                          Book.imageLinks && Book.imageLinks.smallThumbnail
+                            ? `url(${Book.imageLinks.smallThumbnail})`
+                            : "no Image"
                       }}
                     />
                     <div className="book-shelf-changer">
@@ -50,7 +51,11 @@ class BookRow extends Component {
                     </div>
                   </div>
                   <div className="book-title">{Book.title}</div>
-                  <div className="book-authors">{Book.authors}</div>
+                  <div className="book-authors">
+                    {(Book.authors && Book.authors.length) > 1
+                      ? Book.authors.join(", ")
+                      : Book.authors}
+                  </div>
                 </div>
               </li>
             ))}

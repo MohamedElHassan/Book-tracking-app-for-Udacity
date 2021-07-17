@@ -29,14 +29,22 @@ class BookShelves extends Component {
     });
   }
   handleSearch = query => {
-    this.setState(() => ({ SearchValue: query.trim() }));
-    BooksAPI.search(query)
-      .then(BooksSearchQuery => {
-        this.setState(() => ({
-          BooksSearchQuery
-        }));
-      })
-      .catch(error => alert("Watch Out!! , Get ready for the error"));
+    this.setState(() => ({ SearchValue: query }));
+    BooksAPI.search(query).then(BooksSearchQuery => {
+      if (BooksSearchQuery && BooksSearchQuery.length > 0) {
+        for (let i = 0; i < BooksSearchQuery.length; i++) {
+          for (let j = 0; j < this.state.AllBooks.length; j++) {
+            if (BooksSearchQuery[i].id === this.state.AllBooks[j].id) {
+              const index = this.state.AllBooks.findIndex(
+                book => book.id === BooksSearchQuery[i].id
+              );
+              BooksSearchQuery[i].shelf = this.state.AllBooks[index].shelf;
+            }
+          }
+        }
+      }
+      this.setState(() => ({ BooksSearchQuery }));
+    });
   };
   ChangeShelf = (shelf, Book) => {
     const updateIndex = this.state.AllBooks.findIndex(b => b.id === Book.id);
@@ -47,6 +55,7 @@ class BookShelves extends Component {
       updatedBookList.push(Book);
     } else {
       updatedBookList[updateIndex].shelf = shelf;
+      this.setState({ AllBooks: updatedBookList });
     }
     this.setState({
       AllBooks: updatedBookList

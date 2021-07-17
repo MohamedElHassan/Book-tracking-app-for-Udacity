@@ -35,46 +35,50 @@ class SearchBar extends Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {searchValue === ""
-                ? ""
-                : BooksSearchQuery.map(Book => (
-                    <li key={Book.id}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 192,
-                              backgroundImage: `url(${
-                                Book.imageLinks.smallThumbnail
-                              })`
+              {BooksSearchQuery &&
+                BooksSearchQuery.length > 0 &&
+                BooksSearchQuery.map(Book => (
+                  <li key={Book.id}>
+                    <div className="book">
+                      <div className="book-top">
+                        <div
+                          className="book-cover"
+                          style={{
+                            width: 128,
+                            height: 192,
+                            backgroundImage: `url(${
+                              Book.imageLinks.smallThumbnail
+                            })`
+                          }}
+                        />
+                        <div className="book-shelf-changer">
+                          <select
+                            onChange={e => {
+                              onChangeShelf(e.target.value, Book);
                             }}
-                          />
-                          <div className="book-shelf-changer">
-                            <select
-                              onChange={e => {
-                                onChangeShelf(e.target.value, Book);
-                              }}
-                              value={Book.shelf ? Book.shelf : "none"}
-                            >
-                              <option value="move" disabled>
-                                Move to...
-                              </option>
-                              <option value="currentlyReading">
-                                Currently Reading
-                              </option>
-                              <option value="wantToRead">Want to Read</option>
-                              <option value="read">Read</option>
-                              <option value="none">None</option>
-                            </select>
-                          </div>
+                            value={Book.shelf ? Book.shelf : "none"}
+                          >
+                            <option value="move" disabled>
+                              Move to...
+                            </option>
+                            <option value="currentlyReading">
+                              Currently Reading
+                            </option>
+                            <option value="wantToRead">Want to Read</option>
+                            <option value="read">Read</option>
+                            <option value="none">None</option>
+                          </select>
                         </div>
-                        <div className="book-title">{Book.title}</div>
-                        <div className="book-authors">{Book.authors}</div>
                       </div>
-                    </li>
-                  ))}
+                      <div className="book-title">{Book.title}</div>
+                      <div className="book-authors">
+                        {(Book.authors && Book.authors.length) > 1
+                          ? Book.authors.join(", ")
+                          : Book.authors}
+                      </div>
+                    </div>
+                  </li>
+                ))}
             </ol>
           </div>
         </div>
