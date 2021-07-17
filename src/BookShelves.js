@@ -21,12 +21,13 @@ class BookShelves extends Component {
   //I promise I'm improving myself and I will be better and better.
   //I will not give up at all.In the next project will be way improved than this
   //Thank you so much Udacity reviewer, and thanks to Udacity, it helped me alot:D .
-  componentDidMount() {
-    BooksAPI.getAll().then(AllBooks => {
+ async componentDidMount() {
+
+  const books = await BooksAPI.getAll();
       this.setState(() => ({
-        AllBooks
+        AllBooks : books
       }));
-    });
+    
   }
   handleSearch = query => {
     this.setState(() => ({ SearchValue: query }));
