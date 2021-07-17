@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import BookRow from "./BookRow";
-import * as BooksAPI from "./BooksAPI";
+
 class BookCategory extends Component {
   // Please if there is any notes or any improvement, please tell me.
   //I really appreciate your reviewing to my app , I hope you like it.

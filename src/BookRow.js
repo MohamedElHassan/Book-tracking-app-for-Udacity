@@ -65,7 +65,7 @@ class BookRow extends Component {
     );
   }
 }
-BookRow.PropTypes = {
+BookRow.propTypes = {
   title: PropTypes.string.isRequired,
   Book: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired

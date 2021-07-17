@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+
 import * as BooksAPI from "./BooksAPI";
-import BookRow from "./BookRow";
-import BookCategory from "./BookCategory";
+
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { Route } from "react-router-dom";
@@ -55,7 +54,7 @@ class BookShelves extends Component {
       updatedBookList.push(Book);
     } else {
       updatedBookList[updateIndex].shelf = shelf;
-      this.setState({ AllBooks: updatedBookList });
+      
     }
     this.setState({
       AllBooks: updatedBookList

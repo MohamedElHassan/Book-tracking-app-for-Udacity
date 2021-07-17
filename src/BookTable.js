@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import BookCategory from "./BookCategory";
+
 import BookRow from "./BookRow";
 
 class BookTable extends Component {
@@ -41,7 +41,7 @@ class BookTable extends Component {
     );
   }
 }
-BookTable.PropTypes = {
+BookTable.propTypes = {
   AllBooks: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
 };

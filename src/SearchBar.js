@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import * as BooksAPI from "./BooksAPI";
+
 class SearchBar extends Component {
   // Please if there is any notes or any improvement, please tell me.
   //I really appreciate your reviewing to my app , I hope you like it.
@@ -10,7 +10,6 @@ class SearchBar extends Component {
   //Thank you so much Udacity reviewer, and thanks to Udacity, it helped me alot:D .
   render() {
     const {
-      AllBooks,
       searchValue,
       BooksSearchQuery,
       onSearch,
@@ -88,7 +87,7 @@ class SearchBar extends Component {
     );
   }
 }
-SearchBar.PropTypes = {
+SearchBar.propTypes = {
   AllBooks: PropTypes.array.isRequired,
   searchValue: PropTypes.string.isRequired,
   BooksSearchQuery: PropTypes.array.isRequired,
